@@ -15,16 +15,12 @@ const getWin = () => {
   return rn === 1;
 };
 
-export const getServerSideProps = async ({
-  req,
-  res,
-}: GetServerSidePropsContext) => {
-  let result: Result;
+export const getServerSideProps = ({ req, res }: GetServerSidePropsContext) => {
   if (req.cookies.result) {
     console.log(req.cookies.result);
     return { props: { result: req.cookies.result as Result } };
   }
-  result = getWin() ? "win" : "lose";
+  const result: Result = getWin() ? "win" : "lose";
   const expires = new Date();
   expires.setHours(expires.getHours() + 24);
   res.setHeader(
@@ -53,7 +49,7 @@ const Home: NextPage<
           className="mx-auto rounded-xl shadow"
         />
         <Content />
-        <p>Don't forget to Download our App!</p>
+        <p>Don&apos;t forget to Download our App!</p>
         <a
           href="https://qrco.de/bdbfPq"
           target="_blank"
