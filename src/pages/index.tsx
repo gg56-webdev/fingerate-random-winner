@@ -17,7 +17,6 @@ const getWin = () => {
 
 export const getServerSideProps = ({ req, res }: GetServerSidePropsContext) => {
   if (req.cookies.result) {
-    console.log(req.cookies.result);
     return { props: { result: req.cookies.result as Result } };
   }
   const result: Result = getWin() ? "win" : "lose";
@@ -42,6 +41,7 @@ const Home: NextPage<
       <Image loading="eager" src={bg} alt="" className="absolute h-full" />
       <div className="z-10 space-y-5 p-1 text-center text-xl text-white">
         <Image
+          loading="eager"
           src={logo}
           alt="FingeRate Logo"
           width={120}
@@ -64,7 +64,7 @@ const Home: NextPage<
   );
 };
 
-const Win = () => {
+const Lose = () => {
   return (
     <>
       <h1 className="text-3xl font-bold ">🤞 Better luck next time! 🤞</h1>
@@ -73,7 +73,7 @@ const Win = () => {
   );
 };
 
-const Lose = () => {
+const Win = () => {
   return (
     <>
       <h1 className="text-3xl font-bold ">🥳 당첨을 축하합니다! 🥳</h1>
